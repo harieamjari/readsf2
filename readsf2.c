@@ -1,4 +1,4 @@
-/* gcc readsf2.c -O2 -o readsf2 */
+/* gcc -O2 readsf2.c -o readsf2 */
 
 /* sf2.c - sf2 lib for reading sf2 files
  *
@@ -108,31 +108,31 @@ struct SF2 {
   uint32_t nb_smpl;
   int16_t *smpl;
 
-  uint16_t nb_phdr;
+  uint32_t nb_phdr;
   phdr_t *phdr;
 
-  uint16_t nb_pbag;
+  uint32_t nb_pbag;
   pbag_t *pbag;
 
-  uint16_t nb_pmod;
+  uint32_t nb_pmod;
   pmod_t *pmod;
 
-  uint16_t nb_pgen;
+  uint32_t nb_pgen;
   pgen_t *pgen;
 
-  uint16_t nb_inst;
+  uint32_t nb_inst;
   inst_t *inst;
 
-  uint16_t nb_ibag;
+  uint32_t nb_ibag;
   ibag_t *ibag;
 
-  uint16_t nb_imod;
+  uint32_t nb_imod;
   imod_t *imod;
 
-  uint16_t nb_igen;
+  uint32_t nb_igen;
   igen_t *igen;
 
-  uint16_t nb_shdr;
+  uint32_t nb_shdr;
   shdr_t *shdr;
 };
 
@@ -360,7 +360,7 @@ int main(int argc, char *argv[]) {
         CORRUPTED(1);
       }
       sf2->pbag = preset_bags;
-      sf2->nb_phdr = usize / 4;
+      sf2->nb_pbag = usize / 4;
       printf("    Preset bags:\n");
       for (uint32_t i = 0; i < usize / 4; i++) {
         printf("     %-3d                   %-3d  %-3d\n", i,
@@ -376,7 +376,7 @@ int main(int argc, char *argv[]) {
         CORRUPTED(1);
       }
       sf2->pmod = mod_list;
-      sf2->nb_pgen = usize / 10;
+      sf2->nb_pmod = usize / 10;
       printf("    PModulator lists:\n");
       for (uint32_t i = 0; i < usize / 10; i++) {
         printf("     %-3d                   %-3d  %-3d  %-3d  %-3d"
