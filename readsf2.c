@@ -306,10 +306,10 @@ int main(int argc, char *argv[]) {
       printf("  ICOP:                          %s\n", ICOPName);
 
     } else if (!strncmp(utag, "ICMT", 4)) {
-      if (usize > 256)
+      if (usize > 65535)
         CORRUPTED(1);
 
-      char ICMTName[65538] = {0};
+      char ICMTName[65536] = {0};
       if (fread(ICMTName, 1, usize, fp) != usize)
         CORRUPTED(1);
       printf("  ICMT:                          %s\n", ICMTName);
@@ -321,7 +321,7 @@ int main(int argc, char *argv[]) {
       char TOOLName[257] = {0};
       if (fread(TOOLName, 1, usize, fp) != usize)
         CORRUPTED(1);
-      printf("  Tool created:                  %s\n", TOOLName);
+      printf("  Tool created with:             %s\n", TOOLName);
 
     } else
       break;
